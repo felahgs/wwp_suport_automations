@@ -16,6 +16,7 @@ class LoginPage(BasePage):
     LOGIN_ERROR = (By.ID, "error-message")
     URL = "https://trello.com/login"
 
+
     def __init__(self, driver):
         self.driver = driver
         # self.URL = 'https://cinq.repairq.io/site/login'
@@ -37,11 +38,12 @@ class LoginPage(BasePage):
 
 
     def try_to_login (self, username, password):
+        LoginPage.navigate_to_page(self)
         LoginPage.set_username(self, username)
         LoginPage.set_password(self, password)
         btn = self.driver.find_element(*LoginPage.BTN_LOGIN)
         btn.click()
-        print "Logging in to", LoginPage.URL
+        print ("Logging in to", LoginPage.URL)
         try:
             # self.wait.until(EC.url_to_be('https://trello.com/felipesouza118/boards'))
             self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "all-boards")))

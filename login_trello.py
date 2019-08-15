@@ -14,7 +14,7 @@ class Test():
 
     def test_check_groups_list(self):
         login_page = login.LoginPage(self.driver)
-        login_page.navigate_to_page()
+        # login_page.navigate_to_page()
         login_page.try_to_login('fgsouza93@gmail.com', 'Tje3qz%e')
 
 
