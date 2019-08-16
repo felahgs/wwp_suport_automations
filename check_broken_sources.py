@@ -7,6 +7,8 @@ from pageobjects.trello import board
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+from trello import TrelloClient
+
 
 class Test():
     def __init__(self):
@@ -31,19 +33,23 @@ class Test():
 
 if __name__ == "__main__":
 
-    test = Test()
+    client = TrelloClient(
+        api_key='ca43dd546a8464cf0b7564e0f392dbd1',
+        api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
+    )
 
-    # try:
-    test.login_trello()
-    test.fetch_board_sources()
+    all_boards = client.list_boards()
+    wls_board = all_boards[1]
+    my_lists = wls_board.list_lists()
 
-    # except Exception, e:
-    #     exc_type, exc_obj, exc_tb = sys.exc_info()
-    #     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    #     print 'Error running script: ', exc_type, fname, exc_tb.tb_lineno, str(e)
+    done_sources = []
 
-    # finally:
-        # test.end()
-    test.end()
+    for list in my_lists:
+        for card in list.list_cards(card_filter='all'):
+            if "Done" in card.name: 
+                # print(card.name.split()[1])
+                done_sources.append(card.name.split()[1])
 
+    print(done_sources)
+    print(done_sources[1])
     
