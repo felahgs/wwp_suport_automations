@@ -33,6 +33,7 @@ class Test():
 
 if __name__ == "__main__":
 
+    # https://trello.com/app-key
     client = TrelloClient(
         api_key='ca43dd546a8464cf0b7564e0f392dbd1',
         api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
@@ -47,9 +48,21 @@ if __name__ == "__main__":
     for list in my_lists:
         for card in list.list_cards(card_filter='all'):
             if "Done" in card.name: 
-                # print(card.name.split()[1])
+                # print(card)
+                # # print(card.name.split()[1])
                 done_sources.append(card.name.split()[1])
 
     print(done_sources)
-    print(done_sources[1])
-    
+
+    # 
+    # sources = []
+    # week = ["12/08/2019", "13/08/2019", "14/08/2019", "15/08/2019"]
+    # for list in my_lists:
+    #     for card in list.list_cards(card_filter='all'):
+    #         for day in week:
+    #             if "Done" in card.name: 
+    #                 if day in card.name:
+    #                     sources.append(card.name.split()[1])
+
+    # print('week',sources)
+    # print('total', len(sources))
