@@ -18,7 +18,7 @@ class Test():
     def login_trello(self):
         login_page = login.LoginPage(self.driver)
         login_page.navigate_to_page()
-        login_page.try_to_login('fgsouza93@gmail.com', 'Tje3qz%e')
+        login_page.try_to_login('mail@gmail.com', 'password')
 
     def fetch_board_sources(self):
         board_page = board.BoardPage(self.driver)

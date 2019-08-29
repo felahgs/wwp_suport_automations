@@ -27,9 +27,3 @@ for list in my_lists:
             print('new name =', card.name, '\n')
     print('\n')
 
-# for card in quewe.list_cards(card_filter='all'):
-#             if "Source" in card.name: 
-#                 print('old =', card.name)
-#                 card.set_name (card.name.replace('Source', ''))
-#                 print('new =', card.name, '\n')
-

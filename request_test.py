@@ -20,7 +20,10 @@ my_lists = wls_board.list_lists()
 
 for list in my_lists:
     for card in list.list_cards(card_filter='all'):
-        if "Done" in card.name: print(card.name)
+        if "BD_775" in card.name: 
+            print(card.name)
+            out = card.plugin_data
+            print(out)
 
 
 # print(live_list.list_cards())
