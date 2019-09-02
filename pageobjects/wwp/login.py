@@ -49,7 +49,7 @@ class LoginPage(BasePage):
         LoginPage.set_password(self, password)
         btn = self.driver.find_element(*LoginPage.BTN_LOGIN)
         btn.click()
-        print ("Logging in to", LoginPage.URL)
+        print ("Logging in to", LoginPage.URL, '\n')
         dashboard_menu = dashboard.DashboardMenu(self.driver)
         # print('printing', *dashboard_menu.SIDEBAR)
         try:
@@ -60,7 +60,7 @@ class LoginPage(BasePage):
             error = self.driver.find_element_by_class_name('help-inline')
             return False
         else:
-            print('Trello Login Success')
+            print('WWP Source Management Login Success\n')
             return dashboard_menu
 
             

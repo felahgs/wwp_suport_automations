@@ -38,3 +38,19 @@ for list in my_lists:
 # from pprint import pprint
 # pprint(vars(my_object)) 
 
+
+
+
+    # 
+    # sources = []
+    # week = ["12/08/2019", "13/08/2019", "14/08/2019", "15/08/2019"]
+    # for list in my_lists:
+    #     for card in list.list_cards(card_filter='all'):
+    #         for day in week:
+    #             if "Done" in card.name: 
+    #                 if day in card.name:
+    #                     sources.append(card.name.split()[1])
+
+    # print('week',sources)
+    # print('total', len(sources))
+
