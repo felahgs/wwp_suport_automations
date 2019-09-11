@@ -31,3 +31,32 @@ class TrelloApi():
                     # exit(0)
                     # print(card.name)
         return done_sources
+
+    def get_all_cards(self):
+        print('Searching Trello cards..\n')
+        for list in self.my_lists:
+            for card in list.list_cards(card_filter='all'):
+                name = card.name.split()[0]
+                done_sources.append(name)
+        return done_sources
+
+    def get_member(self, name):
+        members = self.wls_board.get_members()
+        for member in members:
+            if name in member.full_name:
+                return member
+        return 'None'
+        
+    def get_all_members(self):
+        members = self.wls_board.get_members()
+        return members
+
+    def get_label(self, name):
+        label_list = self.wls_board.get_labels()
+        for label in label_list:
+            if name in label.name: 
+                return label
+    
+    def get_all_labels(self):
+        labels = self.wls_board.get_labels
+        return labels
