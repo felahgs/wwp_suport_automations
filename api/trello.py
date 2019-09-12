@@ -16,6 +16,7 @@ class TrelloApi():
         self.my_lists = self.wls_board.list_lists()
 
     def get_done_cards(self, days):
+        """Return all cards marked as done from a given list of dates"""
         done_sources = []
         print('Searching Trello cards..\n')
         for list in self.my_lists:
@@ -33,7 +34,9 @@ class TrelloApi():
         return done_sources
 
     def get_all_cards(self):
+        """Return all cards from the board"""
         print('Searching Trello cards..\n')
+        done_sources = []
         for list in self.my_lists:
             for card in list.list_cards(card_filter='all'):
                 name = card.name.split()[0]
@@ -41,22 +44,27 @@ class TrelloApi():
         return done_sources
 
     def get_member(self, name):
+        """Return the first member that matches the chosen name string"""
         members = self.wls_board.get_members()
         for member in members:
             if name in member.full_name:
                 return member
         return 'None'
-        
+
+       
     def get_all_members(self):
+        """Return a list with all the members from the board"""
         members = self.wls_board.get_members()
         return members
 
     def get_label(self, name):
+        """Return the first label that matches the chosen name string"""
         label_list = self.wls_board.get_labels()
         for label in label_list:
             if name in label.name: 
                 return label
     
     def get_all_labels(self):
+        """Return all labels from the board"""
         labels = self.wls_board.get_labels
         return labels

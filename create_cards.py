@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
     # Code logic
     trello = trello.TrelloApi()
+
     member = trello.get_member('Felipe')
-    print(member.full_name)
     members = []
     members.append(member)
 
@@ -40,10 +40,11 @@ if __name__ == "__main__":
     labels.append(get_label('Project NMEDIA', wls_board))
 
     all_cards = []
-    for list in my_lists:
-        for card in list.list_cards(card_filter='all'):
-            name = card.name.split()[0]
-            all_cards.append(name)
+    all_cards = trello.get_all_cards()
+    # for list in my_lists:
+    #     for card in list.list_cards(card_filter='all'):
+    #         name = card.name.split()[0]
+    #         all_cards.append(name)
 
     if len(sys.argv) <= 1:
         print('\nMissing Parameter: Enter the file name containing the sources name')
@@ -57,6 +58,7 @@ if __name__ == "__main__":
     # you may also want to remove whitespace characters like `\n` at the end of each line
     source_list = [x.strip() for x in source_list] 
   
+    print("\nCreating new cards..\n")
     for source in source_list:
         if source in all_cards:
             print('Card already in the board:', source)
