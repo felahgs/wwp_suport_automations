@@ -33,6 +33,29 @@ class TrelloApi():
                     # print(card.name)
         return done_sources
 
+    def get_done_cards_obj(self, days, filter):
+        """Return all cards marked as done from a given list of dates"""
+        done_sources = []
+        print('Searching Trello cards..\n')
+        for list in self.my_lists:
+            for card in list.list_cards(card_filter=filter):
+                if "Done" in card.name: 
+                    name = card.name.split()[0]
+                    date = re.compile('[0-9]{2}/[0-9]{2}/[0-9]{2,4}')
+                    date = date.findall(card.name)[0]
+                    # print(name, date)
+                    if date in days:
+                        # done_sources.append(name + ' ' + date)
+                        done_sources.append(card)
+                    # exit(0)
+                    # print(card.name)
+        return done_sources
+
+    def get_list(self, name):
+        for list in self.my_lists:
+            if name in list.name:
+                return list
+
     def get_all_cards(self):
         """Return all cards from the board"""
         print('Searching Trello cards..\n')
@@ -40,8 +63,16 @@ class TrelloApi():
         for list in self.my_lists:
             for card in list.list_cards(card_filter='all'):
                 name = card.name.split()[0]
-                done_sources.append(name)
+                done_sources.append(card)
         return done_sources
+
+    def get_card(self, name):
+        """Return the first card that matches the card name with the selected string"""
+        cards = list.list_cards(card_filter='all')
+        for card in cards:
+            if name in card.name:
+                return card
+        return 'None'
 
     def get_member(self, name):
         """Return the first member that matches the chosen name string"""
@@ -51,7 +82,6 @@ class TrelloApi():
                 return member
         return 'None'
 
-       
     def get_all_members(self):
         """Return a list with all the members from the board"""
         members = self.wls_board.get_members()
