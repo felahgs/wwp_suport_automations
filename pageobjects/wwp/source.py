@@ -34,6 +34,12 @@ class SourceInfo(BasePage):
             product = 'gov'
         elif 'MEDIA' in self.source_name:
             product = 'media'
+        elif 'MRB' in self.source_name:
+            product = 'mrb'
+        elif 'LIT' in self.source_name:
+            product = 'lit'
+        elif 'SOE' in self.source_name:
+            product = 'soe'
 
         SourceInfo.URL = SourceInfo.MAIN_URL + product + '&sourceId=' + self.source_name
 
