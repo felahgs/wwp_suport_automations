@@ -16,6 +16,11 @@ def get_label(name, board):
     
 if __name__ == "__main__":
 
+    # Check for file name parameter
+    if len(sys.argv) <= 1:
+        print('\nMissing Parameter: Enter the file name containing the sources name')
+        exit(1)
+
     # Initializadtion to be added in a contructor
     client = TrelloClient(
         api_key='ca43dd546a8464cf0b7564e0f392dbd1',
@@ -38,9 +43,6 @@ if __name__ == "__main__":
     all_cards = []
     all_cards = trello.get_all_cards()
 
-    if len(sys.argv) <= 1:
-        print('\nMissing Parameter: Enter the file name containing the sources name')
-        exit(1)
 
     filename = sys.argv[1]
     print('filename', filename)
