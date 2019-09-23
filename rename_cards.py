@@ -21,15 +21,13 @@ print('**RENAMING CARDS. REMOVING \'Source\' FROM THE CARDS NAMES**\n')
 for list in my_lists:
     print('**Renaming cards from ', list, '**\n')
     for card in list.list_cards(card_filter='all'):
-        if "- o" in card.name: 
-            print('old name =', card.name)
-            # card.set_name (card.name.replace('Source', ''))
-            # print('new name =', card.name, '\n')
-            print('new name =', card.name.replace('- o', ''), '\n')
-        if "- n" in card.name: 
-            print('old name =', card.name)
-            # card.set_name (card.name.replace('Source', ''))
-            # print('new name =', card.name, '\n')
-            print('new name =', card.name.replace('- n', ''), '\n')
-    print('\n')
+        if "- n" in card.name:
+            old_name = card.name 
+            new_name = card.name.replace('- n', '- o')
+            card.set_name (new_name)
+            text = '**Automation: Renaming cards**\n' + 'Old name: ' + old_name + '\nNew name: ' + new_name
+            card.comment(text)
+            print(text, '\n')
+            # print('new name =', card.name.replace('- n', '- o'), '\n')
+
 
