@@ -28,7 +28,7 @@ if __name__ == "__main__":
     # Code logic
     trello = trello.TrelloApi()
 
-    member = trello.get_member('Alexandre')
+    member = trello.get_member('Artur')
     members = []
     members.append(member)
     print(member.full_name)
@@ -62,7 +62,8 @@ if __name__ == "__main__":
         if card.name in source_list:
             try:
                 card.add_member(member)
-                card.add_label(label)
+                card.set_pos(1)
+                # card.add_label(label)
                 print(card, 'Error: Attributes already on card')
             except:
                 print(card, 'Attributes added')

@@ -1,4 +1,7 @@
 
+# Check all sources marked as DONE period and
+# shows each source status
+
 import time, sys, os, re, datetime
 
 from pageobjects.trello import login

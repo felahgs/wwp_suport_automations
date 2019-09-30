@@ -1,3 +1,4 @@
+ # in a given time 
 
 import time, sys, os, re, datetime
 
@@ -18,8 +19,8 @@ from utils import date
 if __name__ == "__main__":
 
     my_date = date.dateChecker()
-    start = my_date.convert_to_date("01/06/2019")
-    end = my_date.convert_to_date("30/08/2019")
+    start = my_date.convert_to_date("09/09/2019")
+    end = my_date.convert_to_date("13/09/2019")
     days = my_date.get_days_beetween(start, end)
     # print('\n Verifying the following dates \n', days)
 
@@ -29,4 +30,6 @@ if __name__ == "__main__":
     print('Closing cards from', start, 'to', end)
     for card in done_cards:
         print(card, 'closed')
+        text = '**Automation: Closing cards**\n' + 'Closed all done cards from ' + str(start) + ' to ' + str(end)
+        card.comment(text)
         card.set_closed(True)
