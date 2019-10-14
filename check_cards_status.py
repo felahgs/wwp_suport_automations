@@ -40,8 +40,8 @@ if __name__ == "__main__":
     portal = wwp.Portal()
     portal.login()
 
-    all_cards = []
-    all_cards = trello.get_all_cards()
+    # all_cards = []
+    # all_cards = trello.get_all_cards()
 
 
     filename = sys.argv[1]

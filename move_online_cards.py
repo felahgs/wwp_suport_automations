@@ -1,9 +1,12 @@
+# """Move check all the cards from the Waiting Web Fecher list and move the online ones to the Live list"""
+# " Date still hard codded"
+
 import sys
 
 from trello import TrelloClient
 
 from automation import wwp
-
+from api import trello
 
 # Recieves the name of the desired label and the board where it
 # is contained. Returns the label object.
@@ -26,32 +29,33 @@ if __name__ == "__main__":
 
     # print(my_lists)
     waiting_web_fetcher_list = [bucket for bucket in my_lists if "Waiting" in bucket.name]
+    done_list = [bucket for bucket in my_lists if "Live" in bucket.name]
     print('Checking cards in', waiting_web_fetcher_list)
+    print('Checking cards in', done_list)
 
+    trello = trello.TrelloApi()
+    card = trello.get_card('MEDIA_KH_8409')
+    # print(card)
+    # print(done_list[0].id)
+
+    # new_name = card.name.split()[0] + ' - Done in 09/10/2019'
+    date = ' 10/10/2019'
 
     automation = wwp.Portal()
     automation.login()
+
     for card in waiting_web_fetcher_list[0].list_cards():
         card_name = card.name.split()[0]
-        print(card_name, automation.get_source_status(card_name))
-        # print(automation.get_source_status(card_name))
+        status = automation.get_source_status(card_name)
+        # print(card_name, status)
+        if 'On-line' in status:
+            new_name = card_name + ' - Done in' + date
+            print(card_name, status)
+            print(new_name)
+            card.set_name(new_name)
+            card.change_list(done_list[0].id)
+            text = '**Automation: Moving Online Cards**\n' + 'Card ' + card_name + ' moved to ' + done_list[0].name
+            card.comment(text)
+            print(text, '\n')
 
     automation.end()
-
-    # labels = []
-    # backlog = my_lists[0]
-
-    # # Code logic
-    # labels.append(get_label('QA-FAIL', wls_board))
-    # labels.append(get_label('LOW', wls_board))
-  
-    # if len(sys.argv) > 1: 
-	#     print('arg', sys.argv[1])
-    # else:
-	#     print('Execute the script following the number of cards to be created!')
-	#     exit(1)
-
-    # print(labels)
-    # for i in range(int(sys.argv[1])):
-    #     print(i + 1, 'Card' if i==0 else 'Cards', 'created')
-    #     backlog.add_card('Source', position=1, labels=labels)

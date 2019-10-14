@@ -18,9 +18,11 @@ from utils import date
 
 if __name__ == "__main__":
 
+    print('Starting Script: Closing Old Cards...')
+
     my_date = date.dateChecker()
-    start = my_date.convert_to_date("09/09/2019")
-    end = my_date.convert_to_date("13/09/2019")
+    start = my_date.convert_to_date("23/09/2019")
+    end = my_date.convert_to_date("27/09/2019")
     days = my_date.get_days_beetween(start, end)
     # print('\n Verifying the following dates \n', days)
 

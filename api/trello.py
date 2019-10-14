@@ -68,10 +68,10 @@ class TrelloApi():
 
     def get_card(self, name):
         """Return the first card that matches the card name with the selected string"""
-        cards = list.list_cards(card_filter='all')
-        for card in cards:
-            if name in card.name:
-                return card
+        for list in self.my_lists:
+            for card in list.list_cards(card_filter='all'):
+                if name in card.name:
+                    return card
         return 'None'
 
     def get_member(self, name):
