@@ -20,6 +20,9 @@ class Portal():
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
 
+        ## Disable devTools
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
         self.driver = webdriver.Chrome(chrome_options=options)
         # self.driver = webdriver.Chrome()
         
