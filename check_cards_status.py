@@ -1,7 +1,5 @@
 import sys
 
-from trello import TrelloClient
-
 from api import trello
 
 from automation import wwp
@@ -21,28 +19,13 @@ if __name__ == "__main__":
         print('\nMissing Parameter: Enter the file name containing the sources name')
         exit(1)
 
-    # Initializadtion to be added in a contructor
-    client = TrelloClient(
-        api_key='ca43dd546a8464cf0b7564e0f392dbd1',
-        api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
-    )
-
-    #Get boards and lists
-    all_boards = client.list_boards()
-    wls_board = all_boards[1]
-    my_lists = wls_board.list_lists()
-
     # Code logic
     trello = trello.TrelloApi()
 
-    backlog = my_lists[0]
+    backlog = trello.my_lists[0]
 
     portal = wwp.Portal()
     portal.login()
-
-    # all_cards = []
-    # all_cards = trello.get_all_cards()
-
 
     filename = sys.argv[1]
     print('filename', filename)

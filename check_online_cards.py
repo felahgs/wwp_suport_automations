@@ -1,6 +1,6 @@
 import sys
 
-from trello import TrelloClient
+from api import trello
 
 from automation import wwp
 
@@ -14,18 +14,9 @@ def get_label(name, board):
     
 if __name__ == "__main__":
 
-    # Initializadtion to be added in a contructor
-    client = TrelloClient(
-        api_key='ca43dd546a8464cf0b7564e0f392dbd1',
-        api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
-    )
+    trello = trello.TrelloApi()
 
-    all_boards = client.list_boards()
-    wls_board = all_boards[1]
-    my_lists = wls_board.list_lists()
-
-    # print(my_lists)
-    waiting_web_fetcher_list = [bucket for bucket in my_lists if "Waiting" in bucket.name]
+    waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if "Waiting" in bucket.name]
     print('Checking cards in', waiting_web_fetcher_list)
 
 
@@ -38,20 +29,3 @@ if __name__ == "__main__":
 
     automation.end()
 
-    # labels = []
-    # backlog = my_lists[0]
-
-    # # Code logic
-    # labels.append(get_label('QA-FAIL', wls_board))
-    # labels.append(get_label('LOW', wls_board))
-  
-    # if len(sys.argv) > 1: 
-	#     print('arg', sys.argv[1])
-    # else:
-	#     print('Execute the script following the number of cards to be created!')
-	#     exit(1)
-
-    # print(labels)
-    # for i in range(int(sys.argv[1])):
-    #     print(i + 1, 'Card' if i==0 else 'Cards', 'created')
-    #     backlog.add_card('Source', position=1, labels=labels)

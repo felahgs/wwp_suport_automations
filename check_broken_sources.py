@@ -1,4 +1,3 @@
-
 # Check all sources marked as DONE period and
 # shows each source status
 

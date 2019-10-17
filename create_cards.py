@@ -20,10 +20,6 @@ if __name__ == "__main__":
         api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
     )
 
-    #Get boards and lists
-    all_boards = client.list_boards()
-    wls_board = all_boards[1]
-    my_lists = wls_board.list_lists()
 
     # Code logic
     trello = trello.TrelloApi()
@@ -33,18 +29,14 @@ if __name__ == "__main__":
     members.append(member)
 
     labels = []
-    backlog = my_lists[0]
+    backlog = trello.my_lists[0]
 
-    labels.append(get_label('LOW', wls_board))
-    labels.append(get_label('OPS-FAIL', wls_board))
-    labels.append(get_label('Project NMEDIA', wls_board))
+    labels.append(get_label('LOW', trello.wls_board))
+    labels.append(get_label('OPS-FAIL', trello.wls_board))
+    labels.append(get_label('Project NMEDIA', trello.wls_board))
 
     all_cards = []
     all_cards = trello.get_all_cards()
-    # for list in my_lists:
-    #     for card in list.list_cards(card_filter='all'):
-    #         name = card.name.split()[0]
-    #         all_cards.append(name)
 
     if len(sys.argv) <= 1:
         print('\nMissing Parameter: Enter the file name containing the sources name')
