@@ -7,9 +7,9 @@ if __name__ == "__main__":
 
     trello = trello.TrelloApi()
 
-    member = trello.get_member('Felipe')
+    # member = trello.get_member('Felipe')
     members = []
-    members.append(member)
+    # members.append(member)
 
     labels = []
     backlog = trello.get_list('Backlog')
