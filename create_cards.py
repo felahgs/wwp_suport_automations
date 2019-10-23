@@ -1,6 +1,7 @@
 import sys
 from trello import TrelloClient
 from api import trello
+from automation import wwp
 
 if __name__ == "__main__":
 
@@ -13,11 +14,13 @@ if __name__ == "__main__":
     labels = []
     backlog = trello.get_list('Backlog')
 
+    automation = wwp.Portal()
+
     # Add a label to the card, the label should exist in the board. The first label that contains
     # the selected string will be added.
-    labels.append(trello.get_label('LOW'))
-    labels.append(trello.get_label('OPS-FAIL'))
-    labels.append(trello.get_label('Project NMEDIA'))
+
+    # labels.append(trello.get_label('OPS-FAIL'))
+    # labels.append(trello.get_label('Project NMEDIA'))
 
     all_cards = []
     all_cards_names = []
@@ -44,5 +47,9 @@ if __name__ == "__main__":
         if source in all_cards_names:
             print('Card already in the board:', source)
         else:
-            print('Creating card for source:', source)
+            priority = automation.get_source_priority(source).upper()
+            labels.append(trello.get_label(priority))
+
+            print('Creating card for source:', source, ' priority: ', priority)
             backlog.add_card(source, position=1, labels=labels, assign=members)
+            labels.pop()
