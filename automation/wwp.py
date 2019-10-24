@@ -27,7 +27,6 @@ class Portal():
         # self.driver = webdriver.Chrome()
         
         self.login_page = login.LoginPage(self.driver)
-        self.login()
 
     def login(self):
         self.login_page.navigate_to_page()
