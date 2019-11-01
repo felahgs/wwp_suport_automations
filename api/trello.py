@@ -7,8 +7,8 @@ class TrelloApi():
     def __init__(self):
         # https://trello.com/app-key
         client = TrelloClient(
-            api_key='ca43dd546a8464cf0b7564e0f392dbd1',
-            api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
+            api_key='ebb32a0fd1772ad3a9a99815f8a39b02',
+            api_secret='353b7821984734f5a6d97f268790a53271eb45dd15c049ebe54b539fc11710a4',
         )
 
         self.all_boards = client.list_boards()
