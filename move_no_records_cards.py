@@ -77,8 +77,8 @@ if __name__ == "__main__":
     else:
         waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if fila_desejada in bucket.name]
 
-        while "Checked" or "NMedia" or "Records" in str(waiting_web_fetcher_list):
-            if str(waiting_web_fetcher_list) == "Checked":
+        while (("Checked" in str(waiting_web_fetcher_list)) or ("NMedia" in str(waiting_web_fetcher_list)) or ("Records" in str(waiting_web_fetcher_list))):
+            if "Checked" in str(waiting_web_fetcher_list):
                 print("*** Attention, the column 'Business Review - Already Checked' can not be parsed. ***" + "\n")
             else:
                 print("*** Attention, the column 'NMedia - No New Records' can not be parsed. ***" + "\n")
