@@ -74,6 +74,14 @@ class TrelloApi():
                     return card
         return 'None'
 
+    def get_open_card(self, name):
+        """Return the first card that matches the card name with the selected string"""
+        for list in self.my_lists:
+            for card in list.list_cards(card_filter='open'):
+                if name in card.name:
+                    return card
+        return 'None'
+
     def get_member(self, name):
         """Return the first member that matches the chosen name string"""
         members = self.wls_board.get_members()
