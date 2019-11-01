@@ -16,8 +16,15 @@ if __name__ == "__main__":
 
     trello = trello.TrelloApi()
 
-    waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if "Waiting" in bucket.name]
-    print('Checking cards in', waiting_web_fetcher_list)
+
+    fila_desejada = input("\n" + "Enter the column name to verify the cards status: ")
+
+    while (fila_desejada == ""):
+        print ("\n" + "Please enter a column name.")
+        fila_desejada = input("\n" + "Enter the column name to verify the cards status: ")
+
+    waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if fila_desejada in bucket.name]
+    print("\n" + "Checking cards in", waiting_web_fetcher_list[0].name)
 
 
     automation = wwp.Portal()
