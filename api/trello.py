@@ -65,6 +65,17 @@ class TrelloApi():
                 name = card.name.split()[0]
                 done_sources.append(card)
         return done_sources
+                return list
+
+    def get_all_open_cards(self):
+        """Return all cards from the board"""
+        print('Searching Trello cards..\n')
+        done_sources = []
+        for list in self.my_lists:
+            for card in list.list_cards(card_filter='open'):
+                name = card.name.split()[0]
+                done_sources.append(card)
+        return done_sources
 
     def get_card(self, name):
         """Return the first card that matches the card name with the selected string"""
