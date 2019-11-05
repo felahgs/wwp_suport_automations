@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     all_cards = []
     all_cards_names = []
-    get_cards = trello.get_all_cards()
+    get_cards = trello.get_all_open_cards()
     for card in get_cards:
         all_cards_names.append(card.name)
         

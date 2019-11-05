@@ -60,4 +60,4 @@ if __name__ == "__main__":
         cards_number += 1
         card.set_closed(True)
 
-    print("\n" + "Number of closed cards: " + cards_number)
+    print("\n" + "Number of closed cards: " + str(cards_number))
