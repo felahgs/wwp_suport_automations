@@ -23,7 +23,7 @@ if __name__ == "__main__":
     
     my_date = date.dateChecker()
     start = my_date.convert_to_date("01/06/2019")
-    end = my_date.convert_to_date("10/06/2019")
+    end = my_date.convert_to_date("10/12/2019")
     days = my_date.get_days_beetween(start, end)
     print('\n Verifying the following dates \n', days)
 
@@ -36,7 +36,8 @@ if __name__ == "__main__":
     for card in done_cards:
         name = automation.get_source_name(card)
         status = automation.get_source_status(card)
-        print(card, status)
+        if status != "On-line":
+            print(card, status)
     automation.end()
 
     # for card in done_cards:
