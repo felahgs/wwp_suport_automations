@@ -39,7 +39,7 @@ class TrelloApi():
         print('Searching Trello cards..\n')
         for list in self.my_lists:
             for card in list.list_cards(card_filter=filter):
-                if "Done" in card.name: 
+                if (("Done" in card.name) or ("Moved" in card.name)): 
                     name = card.name.split()[0]
                     date = re.compile('[0-9]{2}/[0-9]{2}/[0-9]{2,4}')
                     date = date.findall(card.name)[0]
@@ -65,7 +65,6 @@ class TrelloApi():
                 name = card.name.split()[0]
                 done_sources.append(card)
         return done_sources
-                return list
 
     def get_all_open_cards(self):
         """Return all cards from the board"""
@@ -76,7 +75,7 @@ class TrelloApi():
                 name = card.name.split()[0]
                 done_sources.append(card)
         return done_sources
-
+    
     def get_card(self, name):
         """Return the first card that matches the card name with the selected string"""
         for list in self.my_lists:
