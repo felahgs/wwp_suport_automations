@@ -10,24 +10,13 @@ from trello import TrelloClient
 from automation import wwp
 from api import trello
 
-# Recieves the name of the desired label and the board where it
-# is contained. Returns the label object.
+
 def get_label(name, board):
     label_list = board.get_labels()
     for label in label_list:
         if name in label.name: return label
-    
-if __name__ == "__main__":
 
-    # Initializadtion to be added in a contructor
-    # client = TrelloClient(
-    #     api_key='ca43dd546a8464cf0b7564e0f392dbd1',
-    #     api_secret='dcda54138ad468433de04f0d422a4407e5dbfb84dad0198347c01bdab40dcde0',
-    # )
-
-    # all_boards = client.list_boards()
-    # wls_board = all_boards[1]
-    # my_lists = wls_board.list_lists()
+def main():
 
     number_verifying_card = 1
     number_moved_cards = 0
@@ -112,6 +101,11 @@ if __name__ == "__main__":
                 print(text, "\n")
                 number_moved_cards += 1
     
-        print("\n\n" + "Number of moved cards: " + str(number_moved_cards) + "\n")
+        print("\n\n" + "***** Number of moved cards: " + str(number_moved_cards) + " ***** \n")
 			
     automation.end()
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    main()
