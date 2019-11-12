@@ -42,11 +42,15 @@ class TrelloApi():
                 if (("Done" in card.name) or ("Moved" in card.name)): 
                     name = card.name.split()[0]
                     date = re.compile('[0-9]{2}/[0-9]{2}/[0-9]{2,4}')
-                    date = date.findall(card.name)[0]
+                    date = date.findall(card.name)
+                    if len(date) > 0:
+                        date = date[0]
+                    else:
+                        continue
                     # print(name, date)
                     if date in days:
                         # done_sources.append(name + ' ' + date)
-                        done_sources.append(name)
+                        done_sources.append(card)
                     # exit(0)
                     # print(card.name)
         return done_sources
