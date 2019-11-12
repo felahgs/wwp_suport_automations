@@ -27,10 +27,10 @@ if __name__ == "__main__":
     data_inicio = input("\n" + "Enter the initial closing cards date: ")
     data_fim = input("\n" + "Enter the final closing cards date: ")
     if((data_inicio != "") and (data_fim != "")):
-        dia_inicio = int(my_date.convert_to_date(data_inicio).strftime("%d"))
-        dia_fim = int(my_date.convert_to_date(data_fim).strftime("%d"))
+        dia_inicio = int(my_date.convert_to_date(data_inicio).strftime("%Y/%m/%d").replace("/",""))
+        dia_fim = int(my_date.convert_to_date(data_fim).strftime("%Y/%m/%d").replace("/",""))
 
-    while ((data_inicio == "") or (data_fim == "") or (data_fim < data_inicio)):
+    while ((data_inicio == "") or (data_fim == "") or (dia_fim < dia_inicio)):
         if((data_inicio == "") or (data_fim == "")):
             print ("\n" + "Please enter the initial and final closing cards date.")
             

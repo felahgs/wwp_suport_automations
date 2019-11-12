@@ -16,8 +16,7 @@ def get_label(name, board):
     for label in label_list:
         if name in label.name: return label
 
-def main():
-
+def main(trello, date):
     number_verifying_card = 1
     number_moved_cards = 0
 
@@ -106,6 +105,6 @@ def main():
     automation.end()
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    main()
+    # import argparse
+    # parser = argparse.ArgumentParser()
+    main(trello,date)
