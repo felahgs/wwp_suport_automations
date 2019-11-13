@@ -26,14 +26,15 @@ if __name__ == "__main__":
     # labels.append(trello.get_label('Project NMEDIA'))
 
     needs_label = input("Want to add some label to all cards? (Y/N) ")
-    if needs_label == "Y":
-        label = input("\n" + "Enter the exact name of the label: " + "\n")
+    while needs_label == "Y":
+        label = input("Enter the exact name of the label: " + "\n\n")
         labels.append(trello.get_label(label))
+        needs_label = input("\n" + "Want to add some more label to all cards? (Y/N) ")
 
     
-    needs_member = input("Want to add some member to all cards? (Y/N) ")
+    needs_member = input("\n\n" + "Want to add some member to all cards? (Y/N) ")
     if needs_member == "Y":
-        member = input("\n" + "Enter the exact name of the member: " + "\n")
+        member = input("Enter the exact name of the member: " + "\n\n")
         members.append(trello.get_member(member))
 
     all_cards = []
