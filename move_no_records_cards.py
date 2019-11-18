@@ -60,7 +60,7 @@ def main(trello, date):
                     print(text, "\n")
                     number_moved_cards += 1
 
-            print("\n\n" + "Number of moved cards in " + queue[0].name + ": " + str(number_moved_cards) + "\n")
+            print("\n\n" + "***** Number of moved cards in " + queue[0].name + ": " + str(number_moved_cards) + " ***** \n")
 
     else:
         waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if fila_desejada in bucket.name]
