@@ -66,5 +66,5 @@ if __name__ == "__main__":
             priority = automation.get_source_priority(source).upper()
             labels.append(trello.get_label(priority))
             print("Creating card for source:", source, " priority: ", priority)
-            backlog.add_card(source + " - n", position="top", labels=labels, assign=members)
+            backlog.add_card(source, position="top", labels=labels, assign=members)
             labels.pop()
