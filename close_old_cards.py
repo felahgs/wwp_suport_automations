@@ -14,6 +14,8 @@ from selenium.webdriver.chrome.options import Options
 
 from api import trello
 
+from trello import TrelloClient
+
 from utils import date
 
 if __name__ == "__main__":

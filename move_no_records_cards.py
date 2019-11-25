@@ -48,14 +48,14 @@ def main(trello, date):
                 if (number_verifying_card % 5 == 0):
                     print("Verifying card " + str(number_verifying_card))
                 number_verifying_card += 1
-                if "No-New-Records" in status:
+                if "No-New-Data" in status:
                     new_name = card_name + " - Moved in " + date
                     print("\n" + card_name, status)
                     print(new_name)
                     card.set_name(new_name)
                     card.change_list(no_records_list[0].id)
                     card.change_pos("bottom")
-                    text = "**Automation: Moving No-New-Records Cards**\n" + "Card " + card_name + " moved to " + no_records_list[0].name
+                    text = "**Automation: Moving No-New-Data Cards**\n" + "Card " + card_name + " moved to " + no_records_list[0].name
                     card.comment(text)
                     print(text, "\n")
                     number_moved_cards += 1
@@ -88,14 +88,14 @@ def main(trello, date):
             if (number_verifying_card % 5 == 0):
                 print("Verifying card " + str(number_verifying_card))
             number_verifying_card += 1
-            if "No-New-Records" in status:
+            if "No-New-Data" in status:
                 new_name = card_name + " - Moved in " + date
                 print("\n" + card_name, status)
                 print(new_name)
                 card.set_name(new_name)
                 card.change_list(no_records_list[0].id)
                 card.change_pos("bottom")
-                text = "**Automation: Moving No-New-Records Cards**\n" + "Card " + card_name + " moved to " + no_records_list[0].name
+                text = "**Automation: Moving No-New-Data Cards**\n" + "Card " + card_name + " moved to " + no_records_list[0].name
                 card.comment(text)
                 print(text, "\n")
                 number_moved_cards += 1
