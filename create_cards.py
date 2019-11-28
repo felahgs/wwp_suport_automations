@@ -63,7 +63,7 @@ if __name__ == "__main__":
         if source in combined:
             print("Card already in the board:", source)
         else:
-            priority = automation.get_source_priority(source).upper()
+            priority = automation.get_source_priority(source)
             labels.append(trello.get_label(priority))
             print("Creating card for source:", source, " priority: ", priority)
             backlog.add_card(source, position="top", labels=labels, assign=members)
