@@ -30,7 +30,7 @@ class Portal():
 
     def login(self):
         self.login_page.navigate_to_page()
-        self.login_page.try_to_login('cinq', 'felipes', 'cinq12345')
+        self.login_page.try_to_login('cinq', 'farFetcher', 'farFetcher')
 
     def get_source_status(self, source_name):
         source_name = source.SourceInfo(self.driver, source_name)
