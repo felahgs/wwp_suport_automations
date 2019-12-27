@@ -29,6 +29,7 @@ if __name__ == "__main__":
     # waiting_web_fetcher_list = [bucket for bucket in trello.my_lists if "Waiting" in bucket.name]
 
     peer_list = [bucket for bucket in trello.my_lists if "Peer Review" in bucket.name]
+    paused_list = [bucket for bucket in trello.my_lists if "Paused" in bucket.name]
 
     automation = wwp.Portal()
     automation.login()
@@ -64,17 +65,17 @@ if __name__ == "__main__":
             if "WATCH" in card_name:
                 if "QA-Fail" in status:
                     print("\n" + card_name, status)
-                    card.change_list(peer_list[0].id)
+                    card.change_list(paused_list[0].id)
                     card.change_pos("bottom")
-                    text = "**Automation: Moving 'QA-Fail' Cards**\n" + "Card " + card_name + " moved to " + peer_list[0].name
+                    text = "**Automation: Moving 'QA-Fail' Cards**\n" + "Card " + card_name + " moved to " + paused_list[0].name
                     card.comment(text)
                     print(text, "\n")
                     number_moved_cards += 1
                 if "xPath" in status:
                     print("\n" + card_name, status)
-                    card.change_list(peer_list[0].id)
+                    card.change_list(paused_list[0].id)
                     card.change_pos("top")
-                    text = "**Automation: Moving 'xPath Error' Cards**\n" + "Card " + card_name + " moved to " + peer_list[0].name
+                    text = "**Automation: Moving 'xPath Error' Cards**\n" + "Card " + card_name + " moved to " + paused_list[0].name
                     card.comment(text)
                     print(text, "\n")
                     number_moved_cards += 1
