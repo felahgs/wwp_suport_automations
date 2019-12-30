@@ -40,25 +40,54 @@ from selenium.webdriver.chrome.options import Options
 
 if __name__ == "__main__":
 
-    number_renamed_cards = 0
-
     trello = trello.TrelloApi()
+    
+    number_renamed_cards = 0
+    labels_add = []
+    labels_remove = []
+    labels_remove.append(trello.get_label("High"))
+    labels_remove.append(trello.get_label("Medium"))
+    labels_remove.append(trello.get_label("Low"))
+    labels_remove.append(trello.get_label("New"))
+    labels_remove.append(trello.get_label("QA-Fail"))
+    labels_remove.append(trello.get_label("Ops-Fail"))
+    labels_remove.append(trello.get_label("IT-Review"))
     
     automation = wwp.Portal()
     automation.login()
 
-    columns_list = ["Waiting Web Fetcher", "Daily Review", "Need Review - New Configuration Rejected by Web Fetcher - EXTRACT/Structured", "Needs Review - Crawl/RIP", "Needs Development", "Technical Review (Tommy)", "Business Review - Pending", "Business Review - Already Checked", "Paused"]
+    columns_list = ["Needs Review - Crawl/RIP", "Needs Development", "NMedia - No New Records", "Business Review - Pending", "Business Review - Already Checked", "Paused", "Technical Review (Tommy)"]
+    # columns_list = ["Backlog"]
     
     for queue in columns_list:
         queue = [bucket for bucket in trello.my_lists if queue in bucket.name]
         print("Checking cards in", queue[0].name + "\n")
         for card in queue[0].list_cards():
             card_name = card.name.split()[0]
-            new_name = card_name
-            print(new_name)
-            card.set_name(new_name)
+            status = automation.get_source_status(card_name)
+            # if (("WATCH" in card_name) and ("IT-Review" in status)):
+            #     print(card_name, status)
+            #     for remove in labels:
+            #         card.remove_label(remove)
+            #     card.add_label(trello.get_label("IT-Review"))
+            #     card.change_pos("top")
+            #     number_renamed_cards += 1
+            priority = automation.get_source_priority(card_name)
+            print(card_name, status, priority)
+            if not (("On-line" in status) or ("In-Progress" in status) or (priority is None)):
+                if "xPath Error" in status:
+                    status = "QA-Fail"
+                labels_add.append(trello.get_label(priority))
+                labels_add.append(trello.get_label(status))
+                for remove in labels_remove:
+                    card.remove_label(remove)
+                for add in labels_add:
+                    card.add_label(add)
+            labels_add.pop()
+            labels_add.pop()
             number_renamed_cards += 1
-            
+
+
     print("\n\n" + "***** Number of renamed cards: " + str(number_renamed_cards) + " ***** \n")
 
     automation.end()

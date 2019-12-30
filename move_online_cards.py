@@ -26,7 +26,8 @@ if __name__ == "__main__":
     date = date.today().strftime("%d/%m/%Y")
     
     # print(my_lists)
-    fila_desejada = input("Enter column name to parse: ")
+    fila_desejada = "all"
+    # fila_desejada = input("Enter column name to parse: ")
     
     done_list = [bucket for bucket in trello.my_lists if "Live" in bucket.name]
 
