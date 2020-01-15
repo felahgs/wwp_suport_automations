@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
 from pageobjects.basepage import BasePage
-from pageobjects.wwp import dashboard
+from pageobjects.skype import chat
 
 class LoginPage(BasePage):
     LOGIN_SCREEN = (By.CLASS_NAME, "app")
@@ -21,7 +21,6 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         self.driver = driver
-        # self.URL = 'https://cinq.repairq.io/site/login'
         self.wait = WebDriverWait(driver, 10)
         LoginPage.navigate_to_page(self)
         self.wait.until(EC.presence_of_element_located(LoginPage.LOGIN_SCREEN))
@@ -56,7 +55,7 @@ class LoginPage(BasePage):
         btn.click()
         
         print ("Logging in to", LoginPage.URL, '\n')
-        dashboard_menu = dashboard.DashboardMenu(self.driver)
+        chat_page = chat.ChatPage(self.driver)
         try:
             self.wait.until(EC.url_to_be(LoginPage.URL))
 
@@ -66,6 +65,6 @@ class LoginPage(BasePage):
             return False
         else:
             print('WWP Source Management Login Success\n')
-            return dashboard_menu
+            return chat_page
 
             
