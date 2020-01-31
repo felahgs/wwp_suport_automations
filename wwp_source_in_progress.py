@@ -22,7 +22,10 @@ if __name__ == "__main__":
     # Code logic
     trello = trello.TrelloApi()
 
-    # backlog = trello.my_lists[0]
+    backlog = trello.my_lists[0]
+
+    portal = wwp.Portal()
+    portal.login()
 
     filename = sys.argv[1]
     print('filename', filename)
@@ -32,25 +35,9 @@ if __name__ == "__main__":
     # you may also want to remove whitespace characters like `\n` at the end of each line
     source_list = [x.strip() for x in source_list] 
 
-    fila = input("Digite a fila de destino: ")
-    fila_destino = [bucket for bucket in trello.my_lists if fila in bucket.name]
-
-    print("\nMovendo cards\n")
-
-    automation = wwp.Portal()
-    automation.login()
-    
+    print("\nChecking Sources Status\n")
     for card in source_list:
-        # card_name = card.name.split()[0]
-        card.change_list(fila_destino[0].id)
-        card.change_pos("top")
-        text = '**Automation: Moving Cards**\n' + 'Card ' ' moved to ' + fila_destino[0].name
-        description = 'Needs Developlment. Show more button'
-        card.set_description(description)
-        card.comment(text)
-        print(text, '\n')
-    
-    print('\n\n' + 'Cards movidos' + '\n')
-			
-    automation.end()
+        print (card, portal.get_source_status(card));
+        portal.set_source_to_in_progress(card);
 
+    portal.end()
