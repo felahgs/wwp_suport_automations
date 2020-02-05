@@ -35,9 +35,10 @@ if __name__ == "__main__":
     # you may also want to remove whitespace characters like `\n` at the end of each line
     source_list = [x.strip() for x in source_list] 
 
-    print("\nChecking Sources Status\n")
+    print("\Moving Sources to 'In-Progress\n")
     for card in source_list:
-        print (card, portal.get_source_status(card));
+        # print (card, portal.get_source_status(card));
         portal.set_source_to_in_progress(card);
+        print (card, portal.get_source_status(card));
 
     portal.end()
