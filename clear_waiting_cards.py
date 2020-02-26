@@ -3,6 +3,8 @@
 
 import sys
 
+from datetime import date
+
 from trello import TrelloClient
 
 from automation import wwp
@@ -22,6 +24,8 @@ if __name__ == "__main__":
 
     trello = trello.TrelloApi()
 
+    date = date.today().strftime("%d/%m/%Y")
+
     # print(my_lists)
     fila_desejada = input("Enter column name to parse: ")
 
@@ -30,6 +34,7 @@ if __name__ == "__main__":
 
     peer_list = [bucket for bucket in trello.my_lists if "Peer Review" in bucket.name]
     paused_list = [bucket for bucket in trello.my_lists if "Paused" in bucket.name]
+    done_list = [bucket for bucket in trello.my_lists if "Live" in bucket.name]
 
     automation = wwp.Portal()
     automation.login()
@@ -85,6 +90,18 @@ if __name__ == "__main__":
                     card.change_list(peer_list[0].id)
                     card.change_pos("top")
                     text = "**Automation: Moving 'IT-Review' Cards**\n" + "Card " + card_name + " moved to " + peer_list[0].name
+                    card.comment(text)
+                    print(text, "\n")
+                    number_moved_cards += 1
+                    number_moved_cards += 1
+                if "On-line" in status:
+                    new_name = card_name + " - Done in " + date
+                    print("\n" + card_name, status)
+                    print(new_name)
+                    card.set_name(new_name)
+                    card.change_list(done_list[0].id)
+                    card.change_pos("bottom")
+                    text = "Automation: Moving Online Cards**\n" + "Card " + card_name + " moved to " + done_list[0].name
                     card.comment(text)
                     print(text, "\n")
                     number_moved_cards += 1
