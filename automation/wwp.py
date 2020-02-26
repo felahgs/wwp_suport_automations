@@ -4,6 +4,7 @@ from pageobjects.trello import login
 from pageobjects.trello import board
 from pageobjects.wwp import login
 from pageobjects.wwp import source
+from pageobjects.wwp import view_sources
 
 
 from selenium import webdriver
@@ -30,7 +31,7 @@ class Portal():
 
     def login(self):
         self.login_page.navigate_to_page()
-        self.login_page.try_to_login('cinq', 'farFetcher', 'farFetcher')
+        self.login_page.try_to_login('cinq', 'farFetcher', 'CCu4,*(xdfeqjK47')
 
     def get_source_status(self, source_name):
         source_name = source.SourceInfo(self.driver, source_name)
@@ -43,6 +44,10 @@ class Portal():
     def get_source_priority(self, source_name):
         source_name = source.SourceInfo(self.driver, source_name)
         return source_name.get_priority(self.driver)
+
+    def get_view_source_numbers(self, queue, priority):
+        source_numbers = view_sources.ViewSources(self.driver, queue, priority)
+        return source_numbers.get_numbers(self.driver)
         
     def fetch_board_sources(self):
         board_page = board.BoardPage(self.driver)
