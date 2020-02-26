@@ -40,10 +40,16 @@ class Portal():
     def get_source_name(self, source_name):
         source_name = source.SourceInfo(self.driver, source_name)
         return source_name.get_name(self.driver)
-
+ 
     def get_source_priority(self, source_name):
         source_name = source.SourceInfo(self.driver, source_name)
         return source_name.get_priority(self.driver)
+
+    def set_source_to_in_progress(self, source_name):
+        source_name = source.SourceInfo(self.driver, source_name)
+        source_name.open_source_details()
+        source_name.select_queue(2)
+        source_name.close_source_details()
 
     def get_view_source_numbers(self, queue, priority):
         source_numbers = view_sources.ViewSources(self.driver, queue, priority)

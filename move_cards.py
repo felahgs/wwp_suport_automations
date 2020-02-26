@@ -41,10 +41,12 @@ if __name__ == "__main__":
     automation.login()
     
     for card in source_list:
-        card_name = card.name.split()[0]
+        # card_name = card.name.split()[0]
         card.change_list(fila_destino[0].id)
         card.change_pos("top")
-        text = '**Automation: Moving Cards**\n' + 'Card ' + card_name + ' moved to ' + fila_destino[0].name
+        text = '**Automation: Moving Cards**\n' + 'Card ' ' moved to ' + fila_destino[0].name
+        description = 'Needs Developlment. Show more button'
+        card.set_description(description)
         card.comment(text)
         print(text, '\n')
     

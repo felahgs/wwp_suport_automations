@@ -15,6 +15,11 @@ class SourceInfo(BasePage):
     QUEUE = (By.XPATH, "//div[@class='table-responsive']/table/tbody/tr[2]/td[4]")
     AGENCY = (By.XPATH, "//div[@class='table-responsive']/table/tbody/tr[6]/td[1]")
     TYPE = (By.XPATH, "//div[@class='table-responsive']/table/tbody/tr[8]/td[1]")
+    SRC_DETAILS_MODAL = (By.XPATH, "//div[@class='modal-body']")
+
+    BTN_SOURCE_DETAILS = (By.XPATH, "//button[@class='btn btn-outline-success btn-md']")
+    BTN_SAVE_AND_CLOSE = (By.XPATH, "//button[@id='saveSource']")
+    SELECT_QUEUE = (By.XPATH, "//select[@id='sourceQueue']")
 
     MAIN_URL = "https://sm.worldwatchplus.com/viewSourceDetails.php?mod="
     URL = ""
@@ -23,6 +28,8 @@ class SourceInfo(BasePage):
     def __init__(self, driver, source_name):
         self.driver = driver
         self.source_name = source_name
+        self.wait = WebDriverWait(driver, 10)
+
 
     def navigate_to_page(self):
         self.driver.get(SourceInfo.URL)
@@ -77,6 +84,17 @@ class SourceInfo(BasePage):
             return "NOT FOUND"
         return priority
 
-        
-    
-            # MEDIA_US_4890
+    def open_source_details(self):
+        source_info = self.driver.find_element(*SourceInfo.BTN_SOURCE_DETAILS)
+        source_info.click()
+        self.wait.until(EC.visibility_of_element_located((SourceInfo.SRC_DETAILS_MODAL)))
+
+    def select_queue(self, option):
+        select_queue = Select(self.driver.find_element(*SourceInfo.SELECT_QUEUE))
+        select_queue.select_by_index(option)
+
+    def close_source_details(self):
+        save_and_close_btn = self.driver.find_element(*SourceInfo.BTN_SAVE_AND_CLOSE)
+        save_and_close_btn.click()
+
+
