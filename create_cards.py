@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # members.append(member)
 
     labels = []
-    backlog = trello.get_list("Backlog")
+    backlog = trello.get_list("Waiting")
 
     automation = wwp.Portal()
     automation.login()
@@ -66,5 +66,5 @@ if __name__ == "__main__":
             priority = automation.get_source_priority(source)
             labels.append(trello.get_label(priority))
             print("Creating card for source:", source, " priority: ", priority)
-            backlog.add_card(source, position="top", labels=labels, assign=members)
+            backlog.add_card(source, position="bottom", labels=labels, assign=members)
             labels.pop()
